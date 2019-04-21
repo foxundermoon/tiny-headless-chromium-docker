@@ -1,17 +1,16 @@
 FROM alpine
 
-LABEL author="foxundermoon"
+LABEL author="github.com/foxundermoon"
 
 
-RUN apk add chromium &&  \
-  apk add mesa-dev && \
-  && mkdir -p /usr/lib/chromium/swiftshader/ && \
-  ln -s /usr/lib/libGLESv2.so /usr/lib/chromium/swiftshader/libGLESv2.so && \
-  ln -s /usr/lib/libEGL.so /usr/lib/chromium/swiftshader/libEGL.so && \
+RUN apk add  --no-cache chromium tini &&  \
+  && rm -rf /var/cache/* \
+  && mkdir /var/cache/apk
 
 
+ENTRYPOINT [ "tini", "--" ]
 
-  EXPOSE 9222
+EXPOSE 9222
 
 VOLUME [ "/data" ]
 
