@@ -7,8 +7,6 @@ ENV HEIGHT=1080
 ENV PORT=9222
 
 RUN apk add  --no-cache chromium tini &&  \
-  echo "@edge http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
-  apk add --no-cache wqy-zenhei@edge && \
   apk add --no-cache mesa-dev && \
   mkdir -p /usr/lib/chromium/swiftshader/ && \
   ln -s /usr/lib/libGLESv2.so /usr/lib/chromium/swiftshader/libGLESv2.so && \
