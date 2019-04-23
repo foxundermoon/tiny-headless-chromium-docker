@@ -2,9 +2,6 @@ FROM alpine
 
 LABEL author="github.com/foxundermoon"
 
-ENV WIDTH=1920
-ENV HEIGHT=1080
-ENV PORT=9222
 
 RUN apk add  --no-cache chromium tini &&  \
   echo "@edge http://nl.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
@@ -22,6 +19,7 @@ RUN apk add  --no-cache chromium tini &&  \
 
 ENTRYPOINT [ "tini", "--" ]
 
+EXPOSE 9222
 
 VOLUME [ "/data" ]
 
@@ -29,9 +27,9 @@ VOLUME [ "/data" ]
 CMD [ "chromium-browser" \
   , "--headless" \
   , "--no-sandbox" \
-  , "--remote-debugging-port=${PORT}" \
+  , "--remote-debugging-port=9222" \
   , "--remote-debugging-address=0.0.0.0" \
-  , "--window-size=${WIDTH},${HEIGHT}" \
+  , "--window-size=1920,1080" \
   , "--user-data-dir=/data" \
   , "--disable-dev-shm-usage" \
   , "--disable-background-networking" \
