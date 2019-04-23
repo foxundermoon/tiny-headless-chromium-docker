@@ -22,7 +22,6 @@ RUN apk add  --no-cache chromium tini &&  \
 
 ENTRYPOINT [ "tini", "--" ]
 
-EXPOSE ${PORT}
 
 VOLUME [ "/data" ]
 
